@@ -1,0 +1,14 @@
+<h1>Title</h1>
+
+
+<ul>
+
+{{skill_list}}
+	
+{% for X in skill_list %}
+	{{X}}
+	{{X.skill_name}}
+	<li><a href="/{{ X.skill}}/"{{X.skill_name }}</a></li>
+{% endfor %}
+
+</ul>

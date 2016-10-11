@@ -1,0 +1,19 @@
+
+<body>
+
+  <h1>Create your username and password</h1>
+ <div class="register">
+  <h3>Please make sure you remember your username and password</h3>
+  <br>
+  <form action="" method="post" class= "post-form"> {% csrf_token %}
+      {{ form.as_p }}
+      <input class="button" type="submit" value="Register">
+      <button class="button" type = "button" onclick = "window.location.href ='http://127.0.0.1:8000/'">Back</button>
+      
+  </form>
+ </div>
+</body>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom.css" /> 
+<!-- <link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> --> <!-- jQuery library --> 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --> <!-- Latest compiled JavaScript --> 
+<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->

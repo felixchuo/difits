@@ -1,0 +1,38 @@
+<div style="width:100%;">
+	<div style="width: 25%; float:left; height:200px; background-color:#00C9FF; display: inline-block">
+	<h1>Differentiation Intelligent Tutoring Systems</h1>
+	</div>
+	<div style="width: 75%; float:right; height:200px; background-colour:blue; display: inline-block">
+		
+		<h1>{{ student.student_firstname }}</h1>
+		
+
+		
+		<a href ="{% url 'detail' %}"><input type = "button" onclick = "window.location.href='{% url 'detail' %}'" value= "Progress Report"/></a>
+		<a href ="{% url 'logout' %}"><input type = "button" onclick = "window.location.href='{% url 'logout' %}'" value= "Logout"/></a>
+	</div>
+</div>
+
+<div style="width:100%;">
+	<div style = "float: left; width:25%; height: 200px; background-color:red; display: inline-block">Left Stuff</div>
+	<div style = "float: left; width:50%; height: 300px; background-color:green; display: inline-block">
+	<h1>Tutorial Section</h1>
+	<h2>&nbsp;{{tutorial_info.0.0}}</h2>
+	<h2><p align="center">{{tutorial_info.0.0}}</h2>
+	<br>
+	
+
+	<button onclick="location.href='http://www.google.com'">Next</button>
+
+	</div>
+
+
+
+
+
+
+
+	<div style = "float: right; width:25%; height: 400px; background-color: yellow; display: inline-block">Right Stuff</div>
+	<br style="clear;left;"/>
+</div>	
+

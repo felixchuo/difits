@@ -1,0 +1,24 @@
+<h1>Title</h1>
+
+
+<ul>
+
+<table style="width:60%">
+	<thead><tr><th>First Name</th><th>Last Name</th><th>Class</th></tr></thead>
+{% for X in lastest_student_list %}
+	
+<tr>	
+	<td><a href="{{ X.student }}">{{X.student_firstname }}</a></td>
+	<td><a href="{{ X.student }}">{{X.student_lastname }}</a></td>
+	<td><a href="{{ X.student }}">{{X.student_class }}</a></td>
+</tr>
+
+{% endfor %}
+
+</table>
+</ul>
+{% load staticfiles %}
+
+<img src="{% static "images.jpg" %}" alt="My image"/> 
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom.css" /> 

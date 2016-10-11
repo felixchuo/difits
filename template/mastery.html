@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/></script>
+<script type="text/javascript" src="{{ STATIC_URL }}mastery.js"></script>
+<script type='text/javascript' src='http://mathdox.org/formulaeditor/main.js'></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom-mastery.css"/>
+<!--  To resize the image during display -->
+<style>
+img.resize{
+	max-width:50%;
+	max-height:50%;
+}
+</style>
+<div style="margin:auto;">
+	<div style="width:100%;"><h1 class="title">Differentiation Intelligent Tutoring Systems</h1>
+	<br>
+	</div>
+	<!-- 	display student's name, skill id and question number -->
+	<table class="top-titlebox">
+	<tr>
+	<td style="border:none;"><h1 class="greetings">You are progressing well {{ student.student_firstname }}&nbsp{{ student.student_lastname }}.</h1></td>
+	<td style="border:none; width:10px;"><input class ="button" type = "button" style="float: right; margin:5px" onclick = "window.location.href='{% url 'detail' %}'" value= "Progress Report"/></td>
+	<td style="border:none; width:10px;"><input class ="button" type = "button" style="float: right; margin:5px" onclick = "window.location.href='{% url 'logout' %}'" value= "Logout"/></td>
+	</tr>
+	</table>
+		<!-- hide the value and state and id for the value to be passed to ajax -->
+		<input type = "hidden" id="progressId" value ={{progressid}}>
+		<input type = "hidden" id="student_id" value ={{student.student}}>
+		<input type = "hidden" id="masLevel" value ={{masLevel}}>
+		<input type = "hidden" id="skill_id" value={{skill_id}}>
+		<input type = "hidden" id="masQueNo" value = "">
+		<input type = "hidden" id="totalQue" value = "">
+		<input type = "hidden" id="totalTry" value = "0">
+</div>
+
+<div id="main-body"><!-- main div -->
+<!-- 	<div style="height:30px"></div> --><!-- Spacer on top before content -->
+	<!-- Left side column within the middle section -->
+<!-- <div class="skillListDiv" style="width:20%; text-align:center;">
+		<div class="icon-close" style = "float: right">
+        Hide List	<img src="/static/arrow_left.jpg">
+		</div><br><br>
+      	<h2 class="skill_list_title"><u>List of Differentiation Skill</u></h2>
+		<p class="skill_list">
+		{{skill_list.0.0}}.&nbsp 	{{skill_list.0.1}}<br><br>
+		{{skill_list.1.0}}.&nbsp 	{{skill_list.1.1}}<br><br>
+		{{skill_list.2.0}}.&nbsp	{{skill_list.2.1}}<br><br>
+		{{skill_list.3.0}}.&nbsp	{{skill_list.3.1}}<br><br>
+		{{skill_list.4.0}}.&nbsp	{{skill_list.4.1}}<br><br>
+		{{skill_list.5.0}}.&nbsp	{{skill_list.5.1}}
+		</p>
+</div> -->
+
+	<!-- middle section within the middle section of the page -->
+<!-- 	<div class="icon-menu" style="margin-left:20%; margin-right:20%; margin-top,margin-bottom:0%;">
+        <img src="/static/arrow_right.jpg">Display list
+	</div> -->
+	<!-- middle section within the middle section of the page -->
+	<div class ="contentDiv" style="margin-left:20%;">
+		<table style="width:80%; margin-left:0%; font-size: 20px;">
+			<tr><td>
+				<h1 class="sectionHeading">Mastery Section</h1>
+				<!-- Get the data from the function mastery through views.py and display the data here -->
+				{% if masLevel == "4" %}
+					<h3>Congratulations!</h3>
+					<h3 class="mastery_intro">You have completed the mastery section successfully.  Proceed back to Progress Report and continue to the next section for your learning process.  Good luck.</h3>
+				{% else %}	
+					<h2>You are now attempting <span class="emphasize">
+						{% if masLevel == "1" %}
+							basic
+						{% elif masLevel == "2" %}
+							average
+						{% else %}
+							challenging
+						{% endif %} </span>level of skill {{skill_list.0.0}}. </h2>
+
+				<!--<h2>&nbsp;{{mastery_info.Que}}&nbsp;&nbsp;{{mastery_info.masQueText}}</h2> -->
+				<!-- hide the number of workStepNo and passed to ajax -->
+				<!-- mastery_info.0.3 gives the information on the number of steps required to complete the exercise -->
+				<input type = "hidden" id ="stepCount" value ="1">
+				<input type = "hidden" id ="workStepNo" value = "">
+				<!-- 	<h2><p align="center">{{mastery_info.masQueExpression}}</h2> -->
+				<div id ="instructionInfo" style="display:block">
+					<h3>Congratulations!</h3>
+					<h3 class="mastery_intro">You have completed the tutorial and the exercise section.  In this mastery section, you will need to answer some questions to determine whether you have mastered the skill.  There are three levels starting from the basic leading towards average and finally challenging level.  You are required to get two questions correctly for the basic and average level and one question correctly for the challenging level in order to complete this mastery section.  Good luck.</h3>
+				</div>
+
+				<div class="mastery_que" id = "queText" style ="display:block"></div>
+				{% endif %}
+			</td></tr>
+		</table>
+		{% if masLevel == "4" %}
+
+		{% else %}	
+		<!-- creating a section for user input -->
+		<table style="width:70%; height:auto;">
+			<tr>
+			<!-- creating a form in order to submit request -->
+			<td style="width:10px;"><form method="POST" id="get_mastery_button" display="block">
+				<input class = "button" type="submit" id ="getmasterybutton" value="Proceed to mastery" >
+			</form></td>
+			<td style="width:5px;"><form method="POST" id="get_masQue1" display = "block">{% csrf_token %}
+				<input class ="button" onclick="change('1')" type="submit" id ="getMasQueButton1" value="Question 1" style ="display:none" disabled>
+			</form></td>
+			<td style="width:5px;"><form method="POST" id="get_masQue2" display = "block">{% csrf_token %}
+				<input class = "button" onclick="change('2')" type="submit" id ="getMasQueButton2" value="Question 2" style ="display:none" disabled  >
+			</form></td>
+			<td style="width:5px;"><form method="POST" id="get_masQue3" display = "block">{% csrf_token %}
+				<input class = "button" onclick="change('3')" type="submit" id ="getMasQueButton3" value="Question 3" style ="display:none" disabled >
+			</form></td>
+			<td style="width:5px;"><form method="POST" id="get_masQue4" display = "block">{% csrf_token %}
+				<input class = "button" onclick="change('4')" type="submit" id ="getMasQueButton4" value="Question 4" style ="display:none" disabled >
+			</form></td>
+			<td style="width:5px;"><form method="POST" id="get_masQue5" display = "block">{% csrf_token %}
+				<input class = "button" onclick="change('5')" type="submit" id ="getMasQueButton5" value="Question 5" style ="display:none" disabled >
+			</form></td>
+			<td style="width:5px;"><form method="POST" id="get_masQue6" display = "block">{% csrf_token %}
+				<input class = "button" onclick="change('6')" type="submit" id ="getMasQueButton6" value="Question 6" style ="display:none" disabled >
+			</form></td>
+			</tr>
+		</table>
+		{% endif %}
+
+		{% if masLevel == "4" %}
+
+		{% else %}	
+		<table style="margin-left:0%; width:100%">
+			<tr><td style="width:70%;">
+				Answer:  <input id="info" type="image" src="../static/infoIcon.jpg" alt="Submit" width="22" height="18"><br>
+				<form method="POST" id="mastery-form" style ="display:none">{% csrf_token %}
+					<script src="http://www.wiris.net/demo/editor/editor"></script>
+					<script>
+						var editor;
+						window.onload = function () {
+						editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar':'<toolbar ref = "general" />'});
+						editor.insertInto(document.getElementById('editorContainer'));
+						}
+					</script>
+					<body>
+					<div id="editorContainer" style="display:block"></div>
+					</body>
+					<input class="button" type="submit" id ="submitbutton" value="Submit">
+				</form></td>
+
+				<td style="width:30%;"><table>
+
+					<!-- RIght Hand Side Column of the middle section -->
+					<tr><td style = "height:auto; background-color:#76F6FD; border-radius:7px;">
+						<form method="POST" id="mashintRequest">{% csrf_token %}
+							<input class = "button" type="submit" value="Hint">
+						</form>
+						<div id="hint" style="width:100%; height:5%; line-height:15px"></div>
+						<div id="hintImage"></div>
+<!-- 						<div id="feedback" style="width:100%; height:15%">feedback</div> -->
+						<div id="answer"></div>
+					</td></tr>
+					<tr>
+						<!-- creating a section for displaying the user input -->
+						<td style = "height:auto; background-color:#76F6FD; border-radius:7px;">
+							<div id="displayinput">Your answer</div>
+						</td>
+					</tr></table>
+
+				</td>
+			</tr>
+		</table>
+		{% endif %}
+		<!-- using style="display:none" to hide the form, then in main.js use document.getElementById("answerRequest").style.display="block" to display-->
+		<form method="POST" id="masanswerRequest" style="display:none">{% csrf_token %}
+			<!-- type ="submit" make it into a button-->
+			<input id="showbutton" type="submit" value="Answer">
+		</form>
+
+		<a href="/mastery/{{skill_id}}" style = "display:none" id = "nextMasLevel" ><button>Next Level</button></a>
+		<button id="nextQue" onclick ="displayActiveButton()" style="border-radius:7px; display:none" disabled>Continue next question.</button>
+	</div>
+	<br style="clear;left;"/>
+</div>	
+
+
+

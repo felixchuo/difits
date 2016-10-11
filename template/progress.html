@@ -1,0 +1,19 @@
+
+Welcome {{user.username}}
+
+<button onclick="location.href='/logout/'">Logout</button>
+
+<h1>Title</h1>
+
+
+<ul>
+
+{{recent_progress}}
+	
+{% for X in recent_progress %}
+	{{X}}
+	{{X.progress}}
+	<li><a href="/{{ X.progress }}/">{{X.mastery_progress }}</a></li>
+{% endfor %}
+
+</ul>

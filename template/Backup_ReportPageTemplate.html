@@ -1,0 +1,81 @@
+<h1>Welcome: <a href="/student/{{ student.student }}">{{ student.student_firstname }}</a></h1>
+
+<h2>Last Login:  </h2>
+
+
+
+<h1>Progress Report</h1>
+
+<h2> Differentiation Skills </h2>
+<ul>
+
+<table style="width:60%">
+	<thead><tr><th></th><th>The First Derivative of Polynomial Function</th><th>Tutorial</th><th>Exercises</th><th>Mastery</th></tr></thead>
+
+{% for progress in student.progress_set.all %}
+	{{progress.tutorial_progress}}
+	hi
+	<tr>
+	<td>{{progress.mastery_progress}}</td>
+	<td>{{progress.tutorial_progress}}</td>
+	</tr>
+
+	<tr>
+		<td>1.</td>
+		<td>The first derivative of the function y = ax^n using the formula</td>
+		<td>{{ progress.tutorial_progress }}</td>
+		<td></td>
+		<td>{{ progress.mastery_progress }}</td>
+	</tr>
+	<tr>
+		<td>2.</td>
+		<td>Value of the first derivative of the function y = ax^n</td>
+		<td>{{ progress.tutorial_progress }}</td>
+		<td></td>
+		<td>{{ progress.mastery_progress }}</td>
+	</tr>
+	<tr>
+		<td>3.</td>
+		<td>The first derivative of a function involving addition or substraction</td>
+		<td>{{ progress.tutorial_progress }}</td>
+		<td></td>
+		<td>{{ progress.mastery_progress }}</td>
+	</tr>
+	<tr>
+		<td>4.</td>
+		<td>The first derivative of a product of two polynomials</td>
+		<td>{{ progress.tutorial_progress }}</td>
+		<td></td>
+		<td>{{ progress.mastery_progress }}</td>
+	</tr>
+	<tr>
+		<td>5.</td>
+		<td>The first derivative of a quotient of two polynomials</td>
+		<td>{{ progress.tutorial_progress }}</td>
+		<td></td>
+		<td>{{ progress.mastery_progress }}</td>
+	</tr>
+	<tr>
+		<td>6.</td>
+		<td>The first derivative of composite function by using Chain Rule</td>
+		<td>{{ progress.tutorial_progress }}</td>
+		<td></td>
+		<td>{{ progress.mastery_progress }}</td>
+	</tr>
+{% endfor %}
+</table>
+
+
+<h3>Legend</h3>
+<table>
+	<tr><td></td><td>Not attempted</td></tr>
+	<tr><td></td><td>Attempted / in the process of completing</td></tr>
+	<tr><td></td><td>Completed</td></tr>
+<table>
+
+</ul>
+{% load staticfiles %}
+
+<img src="{% static "images.jpg" %}" alt="My image"/> 
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom.css" /> 

@@ -1,0 +1,222 @@
+.report
+{
+  top: 25%;
+  left: 20%;
+  border: 5px solid #C3FAEA ;
+  padding: 5px 15px 5px 0px;
+  background-color: #84F5D5;
+  width: 800px; 
+  margin:0px auto;
+  text-align:left;
+  position: fixed;
+}
+
+.welcome
+{
+font-size: 18px;
+color:#200535;
+font-family:Lucida Console;
+}
+
+.contentDiv
+{
+  left: 0;
+  top: 8em;
+  right: 0;
+  margin: 0;
+  height: 100%; 
+  background: rgba(0,102,0, 0.5);
+  padding:0px;
+  position: relative
+}
+
+.content
+{
+  left: 0;
+  top: 8em;
+  right: 0;
+  margin: 0;
+  height: 100%; 
+  background: rgba(0, 191, 255, 0.8);
+  padding:0px;
+  position: relative
+}
+
+.button
+{
+  position: relative;
+  border: 2px solid #555555;
+  padding: 8px 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.emphasize
+{
+  font-size: 26px;
+  color: red;
+}
+
+
+.clear 
+{ 
+  clear:  both; 
+}
+
+.inputArea
+{
+  width:60%; 
+  height: 12%; 
+  
+  display: inline-block;
+  position: relative;
+}
+
+html {
+  background: url("../static/mathematicalSymbols.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+    color: orange;
+    text-align: left;
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+    margin: auto;
+    
+}
+
+h1.title {
+  text-align: center;
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
+}
+
+h1.greetings {
+  color: #A9A9A9;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+h1.prog-report {
+  color: #A9A9A9;
+  text-align: center;
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+h2 {
+  margin: 0px;
+  padding: 0px;
+  text-shadow: 
+    -1px -1px 0 silver,
+    1px -1px 0 silver,
+    -1px 1px 0 silver,
+    1px 1px 0 silver;
+}
+
+h3 {
+  padding-top: 10px;
+  text-shadow: 
+    -1px -1px 0 silver,
+    1px -1px 0 silver,
+    -1px 1px 0 silver,
+    1px 1px 0 silver;
+}
+
+h3.mastery_intro {
+  text-align: justify;
+}
+
+p {
+    font-family: "Times New Roman";
+    font-size: 16px;
+}
+
+/*p.skill_list
+{
+  padding: 10px;
+  font-weight: bold;
+  text-shadow: 
+    -1px -1px 0 silver,
+    1px -1px 0 silver,
+    -1px 1px 0 silver,
+    1px 1px 0 silver;
+}*/
+
+.top-titlebox
+{
+    width: 100%;
+    height: auto;
+    border-style: solid;
+    border-color: silver;
+    border-radius: 7px;
+    background-color: rgba(245, 213, 132, .4);
+}
+
+.exercise-table {
+    box-shadow: -1px -1px 2px #000;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: auto;
+}
+
+#legend {
+  margin-left:auto; 
+    margin-right:auto; 
+}
+/*
+th {
+    height: auto;
+    text-align: left;
+    background-color: #80002D;
+    color: white;
+}
+
+td {
+    border: 1px solid black;
+    opacity: 50;
+    height: auto;
+    vertical-align: bottom;
+
+}*/
+
+/*
+th {
+    text-align: left;
+}
+
+td {
+    height: auto;
+    vertical-align: bottom;
+    padding: auto;
+}
+
+table, td, th {
+    border: 1px solid black;
+    opacity: 50;
+}
+
+th {
+    background-color: #80002D;
+    color: white;
+}
+
+td { font-size: 15px }
+*/

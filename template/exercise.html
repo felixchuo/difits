@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/></script>
+<script type="text/javascript" src="{{ STATIC_URL }}main.js"></script>
+<script type='text/javascript' src='http://mathdox.org/formulaeditor/main.js'></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom-exercise.css" />
+<!--  To resize the image during display -->
+<style>
+img.resize{
+	max-width:50%;
+	max-height:50%;
+}
+</style>
+
+<!-- Top part of the section, and divide the top section into two parts -->
+<div style="margin:auto;">
+	<div style="width:100%;"><h1 class="title">Differentiation Intelligent Tutoring Systems</h1>
+	<br>
+	</div>
+	<!-- 	display student's name, skill id and question number -->
+	<table class="top-titlebox">
+	<tr>
+	<td style="border:none;"><h1 class="greetings">Keep up the good work, {{ student.student_firstname }}&nbsp{{ student.student_lastname }}.</h1></td>
+	<td style="border:none; width:10px;"><input class ="button" type = "button" style="float: right; margin:5px" onclick = "window.location.href='{% url 'detail' %}'" value= "Progress Report"/></td>
+	<td style="border:none; width:10px;"><input class ="button" type = "button" style="float: right; margin:5px" onclick = "window.location.href='{% url 'logout' %}'" value= "Logout"/></td>
+	</tr>
+	</table>
+		<!-- hide the value and state and id for the value to be passed to ajax -->
+		<input type = "hidden" id="student_id" value ={{student.student}}>
+		<input type = "hidden" id ="skill_id" value={{skill_id}}>
+		<input type = "hidden" id ="exeQueNo" value = {{exercise_info.0.0}}>
+</div>
+
+<!--  Middle section, dividing into three section, left, middle and right side of the column -->
+<div id="main-body"><!-- main div -->
+<!-- 	<div style="height:30px"></div> --><!-- Spacer on top before content -->
+	<!-- Left side column within the middle section -->
+<!-- <div class="skillListDiv" style="width:20%; text-align:center;">
+		<div class="icon-close" style = "float: right">
+        Hide list<img src="/static/arrow_left.jpg">
+		</div><br><br>
+      	<h2 class="skill_list_title"><u>List of Differentiation Skill</u></h2>
+		<p class="skill_list">
+		{{skill_list.0.0}}.&nbsp 	{{skill_list.0.1}}<br><br>
+		{{skill_list.1.0}}.&nbsp 	{{skill_list.1.1}}<br><br>
+		{{skill_list.2.0}}.&nbsp	{{skill_list.2.1}}<br><br>
+		{{skill_list.3.0}}.&nbsp	{{skill_list.3.1}}<br><br>
+		{{skill_list.4.0}}.&nbsp	{{skill_list.4.1}}<br><br>
+		{{skill_list.5.0}}.&nbsp	{{skill_list.5.1}}
+		</p>
+</div> -->
+
+	<!-- middle section within the middle section of the page -->
+<!-- 		<div class="icon-menu" style="margin-left:20%; margin-right:20%; margin-top,margin-bottom:0%;">
+        <img src="/static/arrow_right.jpg">Display list
+      	</div> -->
+		<div style="margin-left:20%;">
+			<table style="width:80%; margin-left:0%; font-size: 20px;">
+				<tr><td>
+					<h1 class="sectionHeading">Exercise Section</h1>
+					<!-- Get the data from the function exercise through views.py and display the data here -->
+					<h2>&nbsp;{{exercise_info.0.0}}.&nbsp;&nbsp;{{exercise_info.0.1}}</h2>
+					<!-- hide the number of workStepNo and passed to ajax -->
+					<!-- exercise_info.0.3 gives the information on the number of steps required to complete the exercise -->
+					<input type = "hidden" id ="stepCount" value ="1">
+					<input type = "hidden" id ="workStepNo" value = {{exercise_info.0.3}}>
+					<div><p  style="font-weight:bold; font-size:1.6em; " align="center">`{{exercise_info.0.2}}`</p></div>
+					<h3>You can find the solution in <span class="emphasize">{{exercise_info.0.3}}</span> step.</h3>
+					Answer:  <input id="info" type="image" src="../static/infoIcon.jpg" alt="Submit" width="22" height="18"><br>
+					</td></tr>
+			</table>
+
+			<table style="margin-left:0%; width:100%">
+					<tr><td style="width:70%;">
+					<!-- creating a section for user input -->
+					
+					<!--</td></tr>-->
+					<!-- creating a form in order to submit request -->
+					<!--<button id="info" class="btn"><img src="../static/infoIcon.bmp" style ="height:12px; width:15px"></button>-->
+					<form method="POST" id="workingstep-form">{% csrf_token %}
+    					<script src="http://www.wiris.net/demo/editor/editor"></script>
+    						<script>
+    							var editor;
+    							window.onload = function () {
+      							editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en', 'toolbar':'<toolbar ref = "general" />'});
+      							editor.insertInto(document.getElementById('editorContainer'));
+    							}
+    						</script>
+
+  					<body>
+    					<div id="editorContainer" style="display:block"></div>
+  					</body>
+						<input class="button" type="submit" id ="submitbutton" value="Submit">
+					</form></td>
+
+			<!--<table style="width:80%; margin-left:0%;">-->
+					<!-- using style="display:none" to hide the form, then in main.js use document.getElementById("answerRequest").style.display="block" to display-->
+					<!-- creating a section for displaying the user input -->
+					<td style="width:30%;"><table>
+						<!-- RIght Hand Side Column of the middle section -->
+						<tr><td style = "height:auto; background-color: #76F6FD; border-radius:7px;">
+							<form method="POST" id="hintRequest">{% csrf_token %}
+								<input class="button" type="submit" value="Hint">
+							</form>
+							<div id="hint" style="width:100%; height:5%; line-height:15px"></div>
+							<div id="hintImage"></div>
+<!-- 							<div id="feedback" style="width:100%; height:15%"></div> -->
+							<div id="answer"></div>
+						</td></tr>
+						<tr>
+						<td style="height:auto; background-color:#76F6FD; border-radius:7px;">
+							<div id="displayinput">Your answer</div>
+						</td></tr>
+					</table>
+					</td></tr>
+			</table>
+
+				<table style="width:80%; margin-left:0%;">
+					<colgroup>
+						<col span="3" style="width:20px;">
+						<col>
+					</colgroup>
+					<tr>
+						<td>
+						<form style="display:none" method="POST" id="answerRequest">{% csrf_token %}
+							<!-- type ="submit" make it into a button-->
+							<input class="button" id="showbutton" type="submit" value="Answer">
+						</form>
+						</td>
+
+						<td>
+							<a href="/exercise/{{skill_id}}" style ="display:none" id = "nextQue"><button>Next</button></a>
+						</td>
+
+					</tr>
+				</table>
+
+
+		</div>
+		<!--<br style="clear;left;"/>-->
+</div>
+

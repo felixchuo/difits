@@ -1,0 +1,79 @@
+<html>
+<head>
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" /></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom-reportpage.css" />
+
+</head>
+
+<body>
+	<div style="width:100%;"><h1 class="title">Differentiation Intelligent Tutoring Systems</h1>
+	</div>
+<h2 align="right">Last Login: {{user.last_login}}</h2>
+<table class="top-titlebox">
+<td class="prog-report"><h1 class="greetings">Welcome:&nbsp{{ student.student_firstname }}&nbsp{{ student.student_lastname}}</h1></td>
+<td class="prog-report"><a href ="{% url 'logout' %}"><input  class = "button" style="float: right" type = "button" onclick = "window.location.href='{% url 'logout' %}'" value= "Logout"/></a></td>
+</table>
+<h1 class="prog-report">Progress Report</h1>
+<div class = "report">
+
+<ul>
+<p>The table below records the progress you are making in learning Differentiation.  Click on the relevant skill and section to proceed with your learning.
+</p>
+
+<table class="exercise-table">
+	<thead><tr style="border:2px solid black; background-color: green; color:white;"><th></th><th>The First Derivative of Polynomial Function</th><th>Tutorial</th><th>Exercises</th><th>Mastery</th></tr></thead>
+{% for progress in row %}
+	<tr style="border:2px solid">
+		<td><b>{{progress.3}}. &nbsp &nbsp  </td>
+		<td><b>{{progress.4}}. &nbsp &nbsp &nbsp &nbsp </td>
+		<td>{% if progress.7 == 1 %}
+				<a href="/tutorial/{{progress.3}}">
+			{% endif %}		
+			{% if progress.2 == "NA" %}
+				{% load staticfiles %}<img src="{% static "redStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% elif progress.2 == "NC" %}
+				{% load staticfiles %}<img src="{% static "orangeStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% else %}
+				{% load staticfiles %}<img src="{% static "greenStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% endif %}
+		</a></td>
+		
+		<td>{% if progress.8 == 1 %}
+				<a href="/exercise/{{progress.3}}">
+			{% endif %}	
+			{% if progress.5 == "NA" %}
+				{% load staticfiles %}<img src="{% static "redStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% elif progress.5 == "NC" %}
+				{% load staticfiles %}<img src="{% static "orangeStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% else %}
+				{% load staticfiles %}<img src="{% static "greenStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% endif %}
+		</a></td>
+		<td>{% if progress.9 == 1 %}
+				<a href="/mastery/{{progress.3}}">
+			{% endif %}	
+			{% if progress.1 == "NA" %}
+				{% load staticfiles %}<img src="{% static "redStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% elif progress.1 == "NC" %}
+				{% load staticfiles %}<img src="{% static "orangeStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% else %}
+				{% load staticfiles %}<img src="{% static "greenStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;">
+			{% endif %}
+		</a></td>	
+	</tr>
+{% endfor %}
+</table>
+
+<h3><center>Legend</center></h3>
+<table class="exercise-table">
+	<tr><td>{% load staticfiles %}<img src="{% static "redStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;"></td><td><b>Not attempted</td></tr>
+	<tr><td>{% load staticfiles %}<img src="{% static "orangeStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;"></td><td><b>Attempted / in the process of completing</td></tr>
+	<tr><td>{% load staticfiles %}<img src="{% static "greenStar.jpg" %}" alt="My image"/ style="width:30px; height:30px;"></td><td><b>Completed</td></tr>
+<table>
+</ul>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" /></script>
+<script type="text/javascript" src="{{ STATIC_URL }}main.js"></script>
+
+<!--  To resize the image during display -->
+<style>
+img.resize{
+	max-width:50%;
+	max-height:50%;
+}
+</style>
+
+
+
+
+<div style="width:100%;">
+	<div style="width: 25%; float:left; height:200px; background-color:#00C9FF; display: inline-block">
+	<h1>Differentiation Intelligent Tutoring Systems</h1>
+	</div>
+	<div style="width: 75%; float:right; height:200px; background-colour:blue; display: inline-block">
+		
+		<h1>{{ student.student_firstname }}</h1>
+		<input type = "hidden" id="student_id" value ={{student.student}}   
+		<h3>{{ skill_id }}</h3>
+		<!-- hide the value and state and id for the value to be passed to ajax -->
+		<input type = "hidden" id ="skill_id" value={{skill_id}}>
+		<h3>{{  mastery_info.0.0  }}</h3>
+		<input type = "hidden" id ="exeQueNo" value = {{mastery_info.0.0}}>
+
+		<a href ="{% url 'detail' %}"><input type = "button" onclick = "window.location.href='{% url 'detail' %}'" value= "Progress Report"/></a>
+		<a href ="{% url 'logout' %}"><input type = "button" onclick = "window.location.href='{% url 'logout' %}'" value= "Logout"/></a>
+	</div>
+</div>
+
+<div style="width:100%;">
+	<div style = "float: left; width:25%; height: 100%; background-color:red; display: inline-block"><h2><u>List of Differentiation Skill</u></h2>
+	<p><b>{{skill_list.0.0}}&nbsp{{skill_list.0.1}}</br></br>
+	{{skill_list.1.0}}&nbsp{{skill_list.1.1}}</br></br>
+	{{skill_list.2.0}}&nbsp	{{skill_list.2.1}}</br></br>
+	{{skill_list.3.0}}&nbsp	{{skill_list.3.1}}</br></br>
+	{{skill_list.4.0}}&nbsp	{{skill_list.4.1}}</br></br>
+	{{skill_list.5.0}}&nbsp	{{skill_list.5.1}}</b></p>
+	</div>
+
+	<div style = "float: left; width:50%; height: 100%; background-color:green; display: inline-block">
+	<h1>Mastery Section</h1>
+
+	<h2>{{mastery_info.0.1}}</h2>
+	<h2><p align="center">{{mastery_info.0.2}}</h2>
+	<h3>You can find the solution in {{mastery_info.0.3}} step.</h3>
+	<br>
+	<form>
+		Answer:<br>
+		<input type="text" answer="answer"><br>
+	</form>
+
+	<button onclick="location.href='http://www.google.com'">Submit</button>
+
+	</div>
+
+
+
+
+
+
+
+	<div style = "float: right; width:25%; height: 400px; background-color: yellow; display: inline-block">Right Stuff</div>
+	<br style="clear;left;"/>
+</div>	
+

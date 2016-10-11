@@ -1,0 +1,69 @@
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
+
+input = "when x =10*(4),"
+
+cur = con.cursor()
+cur.execute("""SELECT polls_exe_working.[exeStepAnswer], polls_exe_working.[exeStepHint], polls_exe_working.[exeHintVisualAid], polls_exe_working.[exeGeneralFeedback], polls_exe_working.[exeCongratulatory]
+FROM polls_exercise
+INNER JOIN  polls_exe_working
+ON polls_exercise.[exercise]=polls_exe_working.[exercise_id]
+WHERE (polls_exercise.[skill_id]="2" AND polls_exercise.[exeQueNum]="2" AND polls_exe_working.[exeWorkStepNo]="2")""")
+
+row1 = dictfetchall(cur)
+#print row
+
+#for item in row:
+#  print item
+
+cur = con.cursor()
+cur.execute("""SELECT polls_exe_possible.[exePossibleMistake], polls_exe_possible.[exeMistakeFeedback], polls_exe_possible.[exeFeedbackVisualAid]
+FROM polls_exercise
+INNER JOIN  polls_exe_working
+ON polls_exercise.[exercise]=polls_exe_working.[exercise_id]
+INNER JOIN polls_exe_possible
+ON polls_exe_working.[exeWorkingStep]=polls_exe_possible.[exeWorkingStep_id]
+WHERE (polls_exercise.[skill_id]="2" AND polls_exercise.[exeQueNum]="2" AND polls_exe_working.[exeWorkstepNo]="2")""")
+
+row2 = dictfetchall(cur)
+#row = cur.fetchall()
+#print row
+
+#for item in row:
+#  print item
+
+cur = con.cursor()
+cur.execute("""SELECT polls_exercise.[exeQueNum],  polls_exercise.[exeQueText], polls_exercise.[exeQueExpression], polls_exe_Working.[exeStepHint], polls_exe_Working.[exeHintVisualAid]
+FROM polls_exercise
+INNER JOIN polls_exe_working
+ON polls_exercise.[exercise]=polls_exe_working.[exercise_id]
+WHERE (polls_exercise.[skill_id]="2" AND polls_exercise.[exeQueNum]="2" AND polls_exe_working.[exeWorkstepNo]="2")""")
+row3 = dictfetchall(cur)
+
+
+'''Access the individual value of the dictionary using for loop'''
+
+# for item in row2:
+#    print item["exePossibleMistake"]
+
+#c = StepChecking(input, row1, row2, row3)
+
+userInput = c.preprocessInput()
+databaseAnswer = c.preprocessStepAnswer()
+#databaseQue = c.preprocessQuestion()
+#stepHint = c.getWorkStepHint()
+#LHSExpression = c.compareLHSExpression(userInput, databaseAnswer)
+#c.compareRHSExpression(userInput, databaseAnswer)
+
+#c.preprocessPossibleMistake()
+#print type(databaseQue)
+
+
+c.checkStepAnswer(userInput, databaseAnswer )
+#c.checkSymbolically()

@@ -1,0 +1,99 @@
+<col>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" /></script>
+<script type="text/javascript" src="{{ STATIC_URL }}tutorial.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom-tutorial.css" />
+</head>
+<!--  To resize the image during display -->
+<style>
+img.resize{
+	max-width:50%;
+	max-height:50%;
+}
+</style>
+
+<!-- Top part of the section -->
+<div style="margin: auto;">
+	<div style="width:100%;"><h1 class="title">Differentiation Intelligent Tutoring Systems</h1>
+	<br>
+	</div>
+	<!-- 	display student's name, skill id and question number -->
+	<table class="top-titlebox">
+	<tr>
+	<td style="border:none;"><h1 class="greetings">You are making progress {{ student.student_firstname }}&nbsp{{ student.student_lastname }}.</h1></td>
+	<td style="border:none; width:10px;"><input class ="button" type = "button" style="float: right; margin:5px" onclick = "window.location.href='{% url 'detail' %}'" value= "Progress Report"/></td>
+	<td style="border:none; width:10px;"><input class ="button" type = "button" style="float: right; margin:5px" onclick = "window.location.href='{% url 'logout' %}'" value= "Logout"/></td>
+	</tr>
+	</table>
+	<!-- hide the value and state and id for the value to be passed to ajax -->
+	<input type = "hidden" id= "total_ani" value ={{total_ani}}>
+	<input type = "hidden" id="student_id" value ={{student.student}}>
+	<input type = "hidden" id ="skill_id" value={{skill_id}}>
+	<input type = "hidden" id ="tutorialNo" value = {{tutorial_info}}>
+
+</div>
+
+
+<!--  Middle section, dividing into two section, left and right side of the column -->
+<!-- <div style="width:100%;"> -->
+	<!-- Left side column within the middle section -->
+<div id="main-body">
+<!-- <div style="height:30px"></div> -->
+<!-- <div class="skillListDiv" style="width:20%; text-align:center;">
+		<div class="icon-close" style = "float: right">
+        Hide List<img src="/static/arrow_left.jpg">
+      	</div><br><br>
+		<h2 class="skill_list_title"><u>List of Differentiation Skill</u></h2>
+		<p class="skill_list">
+		{{skill_list.0.0}}.&nbsp	{{skill_list.0.1}}<br><br>
+		{{skill_list.1.0}}.&nbsp	{{skill_list.1.1}}<br><br>
+		{{skill_list.2.0}}.&nbsp	{{skill_list.2.1}}<br><br>
+		{{skill_list.3.0}}.&nbsp	{{skill_list.3.1}}<br><br>
+		{{skill_list.4.0}}.&nbsp	{{skill_list.4.1}}<br><br>
+		{{skill_list.5.0}}.&nbsp	{{skill_list.5.1}}
+		</p>
+</div> -->
+	<!-- right section within the middle section of the page -->
+
+<!-- <div class="icon-menu" style="margin-left:20%; margin-right:20%">
+	<img src="/static/arrow_right.jpg">Display List
+</div> -->
+<div style="width:80%; margin-left:20%;">
+	<table style="box-style:none;">
+	<tr><td>
+	<h1 class="sectionHeading">Tutorial Section</h1>
+	<!-- Get the data from the function exercise through views.py and display the data here -->
+	<h2>The following animation will show you the process for the skill:</h2>
+	<h2>{{skill_id}}.&nbsp{{skill_list.0.1}}</h2>
+	<form method="POST" id="get_tutorial_button" display = "block">
+		<input class="button" type="submit" id ="gettutorialbutton" value="Continue with learning" >
+	</form>
+	</td></tr>
+	</table>
+	<table style="box-style:none;">
+		<tr>
+			<td><form method="POST" id="get_tutorial1" display = "block">{% csrf_token %}
+				<input class="button" type="submit" id ="gettutorialbutton1" value="{{tutName.0.5}}" style ="display:none" disabled >
+			</form></td>
+			<td><form method="POST" id="get_tutorial2" display = "block">{% csrf_token %}
+				<input class="button" type="submit" id ="gettutorialbutton2" value="{{tutName.1.5}}" style ="display:none" disabled>
+			</form></td>
+			<td><form method="POST" id="get_tutorial3" display = "block">{% csrf_token %}
+				<input class="button" type="submit" id ="gettutorialbutton3" value="{{tutName.2.5}}" style ="display:none" disabled>
+			</form></td>
+			<td><form method="POST" id="get_tutorial4" display = "block">{% csrf_token %}
+				<input class="button" type="submit" id ="gettutorialbutton4" value="{{tutName.3.5}}" style ="display:none" disabled>
+			</form></td>
+			<td><form method="POST" id="get_tutorial5" display = "block">{% csrf_token %}
+				<input class="button" type="submit" id ="gettutorialbutton5" value="{{tutName.4.5}}" style ="display:none" disabled>
+			</form></td>
+			<td><form method="POST" id="get_tutorial6" display = "block">{% csrf_token %}
+				<input class="button" type="submit" id ="gettutorialbutton6" value="{{tutName.5.5}}" style ="display:none" disabled>
+			</form></td>
+			<br>
+		</tr>
+	</table>
+	<div class="video" id="displayAni"></div>
+</div>
+</div>

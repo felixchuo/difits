@@ -1,0 +1,22 @@
+<!-- Latest compiled and minified CSS --> 
+<link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Latest compiled JavaScript --> 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
+
+<link rel="stylesheet" type="text/css" href="custom.css"> 
+
+
+
+
+<h1>REGISTRATION PAGE</h1>
+
+<form method="POST" class = "post-form">{% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit" class= "save btn btn-default" href = "registrationSuccess.html">Register</button>
+<button class = "button" type="button" onclick = "window.location.href='http://127.0.0.1:8000'">Quit</button>
+
+</form>  
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom.css" /> 

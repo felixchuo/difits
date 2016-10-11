@@ -1,0 +1,248 @@
+.login
+{
+  top: 20%;
+  left: 20%;
+  border: 5px solid #C3FAEA;
+  padding: 25px 15px;
+  background-color: #39D7CC;
+  width: 800px; 
+  margin:0px auto;
+  text-align:center;
+  position: fixed;
+}
+
+.register
+{
+  top: 20%;
+  left: 20%;
+  border: 5px solid #C3FAEA ;
+  padding: 25px 15px;
+  background-color: #84F5D5;
+  width: 800px; 
+  margin:0px auto;
+  text-align:left;
+  position: fixed;
+}
+
+.retrieve
+{
+  top: 20%;
+  left: 20%;
+  border: 5px solid #C3FAEA ;
+  padding: 25px 15px;
+  background-color: #84F5D5;
+  width: 800px; 
+  margin:0px auto;
+  text-align:left;
+  position: fixed;
+}
+
+.report
+{
+  top: 25%;
+  left: 20%;
+  border: 5px solid #C3FAEA ;
+  padding: 5px 15px 5px 0px;
+  background-color: #84F5D5;
+  width: 800px; 
+  margin:0px auto;
+  text-align:left;
+  position: fixed;
+}
+
+.welcome
+{
+font-size: 18px;
+color:#200535;
+font-family:Lucida Console;
+}
+
+.intro
+{
+  text-align:justify;
+  font-family:"Times New Roman";
+  font-size: 18px;
+  width: 800px;
+}
+
+.skillListDiv
+{
+  background: rgb(154, 253, 195);
+  left: -285px;
+  top: 10.5em;
+  height: 100%;
+  position: fixed;
+  width: 285px;
+}
+
+.contentDiv
+{
+  left: 0;
+  top: 8em;
+  right: 0;
+  margin: 0;
+  height: 100%; 
+  background: rgba(0,102,0, 0.5);
+  padding:0px;
+  position: relative
+}
+
+.content
+{
+  left: 0;
+  top: 8em;
+  right: 0;
+  margin: 0;
+  height: 100%; 
+  background: rgba(0, 191, 255, 0.8);
+  padding:0px;
+  position: relative
+}
+
+.button
+{
+  position: relative;
+  margin: 10px;
+  border: 2px solid #555555;
+  padding: 5px 5px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.emphasize
+{
+  font-size: 26px;
+  color: red;
+  text-shadow: 
+    -1px -1px 0 silver,
+    1px -1px 0 silver,
+    -1px 1px 0 silver,
+    1px 1px 0 silver;
+}
+
+.video
+{
+  position : relative;
+  top: 0em;
+  left: 10em;  
+}
+
+.clear 
+{ 
+  clear:  both; 
+}
+
+.inputArea
+{
+  width:60%; 
+  height: 12%; 
+  
+  display: inline-block;
+  position: relative;
+}
+
+html {
+  background: url("../static/mathematicalSymbols.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0.9;
+}
+
+h1 {
+    color: orange;
+    text-align: center;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+h2 {
+  padding: 10px;
+  text-shadow: 
+    -1px -1px 0 silver,
+    1px -1px 0 silver,
+    -1px 1px 0 silver,
+    1px 1px 0 silver;
+}
+
+h3 {
+  padding: 10px;
+  text-shadow: 
+    -1px -1px 0 silver,
+    1px -1px 0 silver,
+    -1px 1px 0 silver,
+    1px 1px 0 silver;
+}
+
+h3.mastery_intro {
+  text-align: justify;
+}
+
+p {
+    font-family: "Times New Roman";
+    font-size: 16px;
+}
+
+p.skill_list
+{
+  padding: 10px;
+  font-weight: bold;
+  text-shadow: 
+    -1px -1px 0 silver,
+    1px -1px 0 silver,
+    -1px 1px 0 silver,
+    1px 1px 0 silver;
+}
+
+div.mastery_que{
+  padding: 10px;
+  text-align: center;
+  font-family: "Times New Roman";
+  font-size: 20px;
+  font-weight: bold;
+}
+
+table, th, td {
+   border: 1px solid black;
+} 
+
+table
+{ 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+    height: 50px;
+} 
+
+th {
+    text-align: left;
+}
+
+td {
+    height: 50px;
+    vertical-align: bottom;
+}
+
+td {
+    padding: 10px;
+}
+
+table, td, th {
+    border: 1px solid green;
+}
+
+th {
+    background-color: #80002D;
+    color: white;
+}
+
+td { font-size: 20px }

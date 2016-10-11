@@ -1,0 +1,98 @@
+<html>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" /></script>
+<script type="text/javascript" src="{{ STATIC_URL }}tutorial.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}custom-tutorial.css" />
+</head>
+<!--  To resize the image during display -->
+<style>
+img.resize{
+	max-width:50%;
+	max-height:50%;
+}
+</style>
+
+<!-- Top part of the section -->
+<div style="margin: auto;">
+	<div style="width:100%;"><h1 style="margin-top:50px">Differentiation Intelligent Tutoring Systems</h1>
+	<br>
+	<br>
+	</div>
+	<!-- 	display student's name, skill id and question number -->
+	<table style="width:100%; border: 2px solid white;">
+	<tr>
+	<td style="border:none;"><h1 style="text-align:left; font-size:30px; margin:auto;">Welcome: {{ student.student_firstname }}&nbsp{{ student.student_lastname }}</h1></td>
+	<td style="border:none; width:10px;"><input class ="button" type = "button" style="float: right; margin:5px" onclick = "window.location.href='{% url 'detail' %}'" value= "Progress Report"/></td>
+	<td style="border:none; width:10px;"><input class ="button" type = "button" style="float: right; margin:5px" onclick = "window.location.href='{% url 'logout' %}'" value= "Logout"/></td>
+	</tr>
+	</table>
+	<!-- hide the value and state and id for the value to be passed to ajax -->
+	<input type = "hidden" id= "total_ani" value ={{total_ani}}>
+	<input type = "hidden" id="student_id" value ={{student.student}}>
+	<input type = "hidden" id ="skill_id" value={{skill_id}}>
+	<input type = "hidden" id ="tutorialNo" value = {{tutorial_info}}>
+</div>
+
+
+<!--  Middle section, dividing into two section, left and right side of the column -->
+<!-- <div style="width:100%;"> -->
+	<!-- Left side column within the middle section -->
+	<div style="float:left; background: rgba(255, 102, 0, 0.5);"></div>
+	<div class="skillListDiv">
+		<div class="icon-close" style = "float: right">
+        <img src="/static/arrow_left.jpg">
+      	</div>
+		<h2 class="skill_list_title"><u>List of Differentiation Skill</u></h2>
+		<p class="skill_list">
+		{{skill_list.0.0}}.&nbsp	{{skill_list.0.1}}<br><br>
+		{{skill_list.1.0}}.&nbsp	{{skill_list.1.1}}<br><br>
+		{{skill_list.2.0}}.&nbsp	{{skill_list.2.1}}<br><br>
+		{{skill_list.3.0}}.&nbsp	{{skill_list.3.1}}<br><br>
+		{{skill_list.4.0}}.&nbsp	{{skill_list.4.1}}<br><br>
+		{{skill_list.5.0}}.&nbsp	{{skill_list.5.1}}
+		</p>
+	</div>
+
+	<!-- right section within the middle section of the page -->
+	<div class="content">
+	<div class="icon-menu">
+        <img src="/static/arrow_right.jpg">
+      </div>
+	<h1>Tutorial Section</h1>
+	<!-- Get the data from the function exercise through views.py and display the data here -->
+	<h2>The following animation will show you the process for the skill:</h2>
+	<h2>{{skill_id}}.&nbsp{{skill_list.0.1}}</h2>
+	
+	<form method="POST" id="get_tutorial_button" display = "block">
+		<input class="button" type="submit" id ="gettutorialbutton" value="Continue with learning" >
+	</form>
+	<div class="video" id="displayAni">
+
+	</div>
+	<form method="POST" id="get_tutorial1" display = "block">{% csrf_token %}
+    	<input class="button" type="submit" id ="gettutorialbutton1" value="Video 1" style ="display:none" disabled >
+    </form>
+    <form method="POST" id="get_tutorial2" display = "block">{% csrf_token %}
+    	<input class="button" type="submit" id ="gettutorialbutton2" value="Video 2" style ="display:none" disabled>
+    </form>
+    <form method="POST" id="get_tutorial3" display = "block">{% csrf_token %}
+    	<input class="button" type="submit" id ="gettutorialbutton3" value="Video 3" style ="display:none" disabled>
+    </form>
+    <form method="POST" id="get_tutorial4" display = "block">{% csrf_token %}
+    	<input class="button" type="submit" id ="gettutorialbutton4" value="Video 4" style ="display:none" disabled>
+    </form>
+    <form method="POST" id="get_tutorial5" display = "block">{% csrf_token %}
+    	<input class="button" type="submit" id ="gettutorialbutton5" value="Video 5" style ="display:none" disabled>
+    </form>
+    <form method="POST" id="get_tutorial6" display = "block">{% csrf_token %}
+    	<input class="button" type="submit" id ="gettutorialbutton6" value="Video 6" style ="display:none" disabled>        
+	</form>
+	<br>
+
+	</div>
+<!-- </div>	 -->
+
+
+
+</htm>
